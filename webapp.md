@@ -68,9 +68,39 @@ az group create --name RESOURCEGROUPNAME --location westeurope
 # Production
 az webapp create --name APPSERVICE --resource-group RESOURCEGROUPNAME --plan SERVICEPLAN --deployment-container-image-name APPSERVICE
 
-# Test slot (Optional)
-az webapp deployment slot create --name APPSERVICE --resource-group RESOURCEGROUPNAME --slot test
+# Staging slot (Optional)
+az webapp deployment slot create --name APPSERVICE --resource-group RESOURCEGROUPNAME --slot staging
 
 # Dev slot (Optional)
 az webapp deployment slot create --name APPSERVICE --resource-group RESOURCEGROUPNAME --slot dev
+```
+
+# Setup Container Registry Access for your App
+- [ ] Requires an Azure AD group that is assigned the ArcPull role under Access Control (IAM) on your container registry.
+```powershell
+# Production slot
+az webapp identity assign -group RESOURCEGROUPNAME -name APPSERVICE
+az ad group member add --group GROUPID --member-id PRINCIPALID
+
+# Test slot (Optional)
+az webapp identity assign -group RESOURCEGROUPNAME -name APPSERVICE -slot test
+az ad group member add --group GROUPID --member-id PRINCIPALID
+
+# Dev slot (Optional)
+az webapp identity assign -group RESOURCEGROUPNAME -name APPSERVICE -s dev
+az ad group member add --group GROUPID --member-id PRINCIPALID
+```
+
+# Setup VNET on your App and deployment slots
+- [ ] If the VNET is in a different resource group, it'll require a path similar to:
+- [ ] '/subscriptions/SUBSCRIPTIONUUID/resourceGroups/VNETRESOURCEGROUPNAME/providers/Microsoft.Network/virtualNetworks/VNETNAME'
+```powershell
+# Production slot
+az webapp vnet-integration add -g RESOURCEGROUPNAME -n APPSERVICE --vnet VNETINFO --subnet SUBNETNAME
+
+# Test slot (Optional)
+az webapp vnet-integration add -g RESOURCEGROUPNAME -n APPSERVICE --vnet VNETINFO --subnet SUBNETNAME -s test
+
+# Dev slot (Optional)
+az webapp vnet-integration add -g RESOURCEGROUPNAME -n APPSERVICE --vnet VNETINFO --subnet SUBNETNAME -s dev
 ```
