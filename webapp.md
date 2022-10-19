@@ -93,7 +93,7 @@ az ad group member add --group GROUPID --member-id PRINCIPALID
 
 # Setup VNET on your App and deployment slots
 - [ ] If the VNET is in a different resource group, it'll require a path similar to:
-- [ ] '/subscriptions/SUBSCRIPTIONUUID/resourceGroups/VNETRESOURCEGROUPNAME/providers/Microsoft.Network/virtualNetworks/VNETNAME'
+'/subscriptions/SUBSCRIPTIONUUID/resourceGroups/VNETRESOURCEGROUPNAME/providers/Microsoft.Network/virtualNetworks/VNETNAME'
 ```powershell
 # Production slot
 az webapp vnet-integration add -g RESOURCEGROUPNAME -n APPSERVICE --vnet VNETINFO --subnet SUBNETNAME
