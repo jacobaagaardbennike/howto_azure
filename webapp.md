@@ -104,3 +104,36 @@ az webapp vnet-integration add -g RESOURCEGROUPNAME -n APPSERVICE --vnet VNETINF
 # Dev slot (Optional)
 az webapp vnet-integration add -g RESOURCEGROUPNAME -n APPSERVICE --vnet VNETINFO --subnet SUBNETNAME -s dev
 ```
+
+# Setup PE for Slots
+```powershell
+# Production slot
+az network private-endpoint create \
+--name pe-APPSERVICE \
+--resource-group VNETRESOURCEGROUPNAME \
+--vnet-name VNETNAME \
+--subnet SUBNETNAME \
+--connection-name pe-APPSERVICE-GENERATEANUUID \
+--private-connection-resource-id /subscriptions/SUBSCRIPTIONUUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Web/sites/APPSERVICE \
+--group-id sites
+
+# Test slot (Optional)
+az network private-endpoint create \
+--name pe-APPSERVICE-staging \
+--resource-group VNETRESOURCEGROUPNAME \
+--vnet-name VNETNAME \
+--subnet SUBNETNAME \
+--connection-name pe-APPSERVICE-staging-GENERATEANUUID \
+--private-connection-resource-id /subscriptions/SUBSCRIPTIONUUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Web/sites/APPSERVICE \
+--group-id sites-staging
+
+# Dev slot (Optional)
+az network private-endpoint create \
+--name pe-APPSERVICE-dev \
+--resource-group VNETRESOURCEGROUPNAME \
+--vnet-name VNETNAME \
+--subnet SUBNETNAME \
+--connection-name pe-APPSERVICE-dev-GENERATEANUUID \
+--private-connection-resource-id /subscriptions/SUBSCRIPTIONUUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Web/sites/APPSERVICE \
+--group-id sites-dev
+```
