@@ -137,3 +137,17 @@ az network private-endpoint create \
 --private-connection-resource-id /subscriptions/SUBSCRIPTIONUUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Web/sites/APPSERVICE \
 --group-id sites-dev
 ```
+
+# Rust container stuff:
+```JSON
+  {
+    "name": "WEBSITES_PORT",
+    "value": "8000",
+    "slotSetting": false
+  },
+    {
+    "name": "WEBSITES_CONTAINER_START_LIMIT",
+    "value": "1200",
+    "slotSetting": false
+  },
+```
