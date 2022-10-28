@@ -59,6 +59,11 @@ az login
 az account set -s SUBSCRIPTIONUUID
 ```
 
+# If the app service plan is not in the same RG, find it this way:
+```powershell
+az appservice plan show -n SERVICEPLAN -g PLANRGGROUPNAME --query "id" --out tsv
+```
+
 # Create Web App
 ```powershell
 # Create Resource Group
