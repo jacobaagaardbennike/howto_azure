@@ -103,16 +103,16 @@ az functionapp deployment slot create --name FUNCTIONAPP --resource-group RESOUR
 - [ ] Requires an Azure AD group that is assigned the ArcPull role under Access Control (IAM) on your container registry.
 ```powershell
 # Production slot
-az webapp identity assign -group RESOURCEGROUPNAME -name APPSERVICE
-az ad group member add --group GROUPID --member-id PRINCIPALID
+az webapp identity assign --g RESOURCEGROUPNAME --n APPSERVICE
+az ad group member add --g GROUPID --member-id PRINCIPALID
 
 # Test slot (Optional)
-az webapp identity assign -group RESOURCEGROUPNAME -name APPSERVICE -slot test
-az ad group member add --group GROUPID --member-id PRINCIPALID
+az webapp identity assign --g RESOURCEGROUPNAME --n APPSERVICE -slot test
+az ad group member add --g GROUPID --member-id PRINCIPALID
 
 # Dev slot (Optional)
-az webapp identity assign -group RESOURCEGROUPNAME -name APPSERVICE -s dev
-az ad group member add --group GROUPID --member-id PRINCIPALID
+az webapp identity assign --g RESOURCEGROUPNAME --n APPSERVICE -s dev
+az ad group member add --g GROUPID --member-id PRINCIPALID
 ```
 
 # Setup VNET on your App and deployment slots
