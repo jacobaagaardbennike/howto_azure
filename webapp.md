@@ -59,7 +59,7 @@ az login
 az account set -s SUBSCRIPTIONUUID
 ```
 
-# Create App
+# Create Web App
 ```powershell
 # Create Resource Group
 az group create --name RESOURCEGROUPNAME --location westeurope
@@ -73,6 +73,25 @@ az webapp deployment slot create --name APPSERVICE --resource-group RESOURCEGROU
 
 # Dev slot (Optional)
 az webapp deployment slot create --name APPSERVICE --resource-group RESOURCEGROUPNAME --slot dev
+```
+
+# Create Function App
+```powershell
+# Create Resource Group
+az group create --name RESOURCEGROUPNAME --location westeurope
+
+# Create storage account
+az storage account create --name STORAGENAME --location westeurope --resource-group RESOURCEGROUPNAME --sku Standard_LRS
+
+# Create App and Deployment Slots
+# Production
+az functionapp create --name FUNCTIONAPP --storage-account STORAGENAME --resource-group RESOURCEGROUPNAME --plan SERVICEPLAN --deployment-container-image-name FUNCTIONAPP
+
+# Staging slot (Optional)
+az functionapp deployment slot create --name FUNCTIONAPP --resource-group RESOURCEGROUPNAME --slot staging
+
+# Dev slot (Optional)
+az functionapp deployment slot create --name FUNCTIONAPP --resource-group RESOURCEGROUPNAME --slot dev
 ```
 
 # Setup Container Registry Access for your App
