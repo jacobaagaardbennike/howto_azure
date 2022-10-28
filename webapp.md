@@ -120,13 +120,13 @@ az ad group member add --group GROUPID --member-id PRINCIPALID
 '/subscriptions/SUBSCRIPTIONUUID/resourceGroups/VNETRESOURCEGROUPNAME/providers/Microsoft.Network/virtualNetworks/VNETNAME'
 ```powershell
 # Production slot
-az webapp/functionapp vnet-integration add -g RESOURCEGROUPNAME -n APPSERVICE --vnet VNETINFO --subnet SUBNETNAME
+az webapp/functionapp vnet-integration add --resource-group RESOURCEGROUPNAME --name APPSERVICE --vnet VNETINFO --subnet SUBNETNAME
 
 # Test slot (Optional)
-az webapp/functionapp vnet-integration add -g RESOURCEGROUPNAME -n APPSERVICE --vnet VNETINFO --subnet SUBNETNAME --slot staging
+az webapp/functionapp vnet-integration add --resource-group RESOURCEGROUPNAME --name APPSERVICE --vnet VNETINFO --subnet SUBNETNAME --slot staging
 
 # Dev slot (Optional)
-az webapp/functionapp vnet-integration add -g RESOURCEGROUPNAME -n APPSERVICE --vnet VNETINFO --subnet SUBNETNAME --slot dev
+az webapp/functionapp vnet-integration add --resource-group RESOURCEGROUPNAME --name APPSERVICE --vnet VNETINFO --subnet SUBNETNAME --slot dev
 ```
 
 # Setup PE for Slots
