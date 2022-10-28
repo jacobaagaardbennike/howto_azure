@@ -103,16 +103,16 @@ az functionapp deployment slot create --name FUNCTIONAPP --resource-group RESOUR
 - [ ] Requires an Azure AD group that is assigned the ArcPull role under Access Control (IAM) on your container registry.
 ```powershell
 # Production slot
-az webapp identity assign --g RESOURCEGROUPNAME --n APPSERVICE
-az ad group member add --g GROUPID --member-id PRINCIPALID
+az webapp/functionapp identity assign --resource-group RESOURCEGROUPNAME --n APPSERVICE
+az ad group member add --group GROUPID --member-id PRINCIPALID
 
 # Test slot (Optional)
-az webapp identity assign --g RESOURCEGROUPNAME --n APPSERVICE -slot test
-az ad group member add --g GROUPID --member-id PRINCIPALID
+az webapp/functionapp identity assign --resource-group RESOURCEGROUPNAME --n APPSERVICE -slot staging
+az ad group member add --group GROUPID --member-id PRINCIPALID
 
 # Dev slot (Optional)
-az webapp identity assign --g RESOURCEGROUPNAME --n APPSERVICE -s dev
-az ad group member add --g GROUPID --member-id PRINCIPALID
+az webapp/functionapp identity assign --resource-group RESOURCEGROUPNAME --n APPSERVICE --slot dev
+az ad group member add --group GROUPID --member-id PRINCIPALID
 ```
 
 # Setup VNET on your App and deployment slots
@@ -120,13 +120,13 @@ az ad group member add --g GROUPID --member-id PRINCIPALID
 '/subscriptions/SUBSCRIPTIONUUID/resourceGroups/VNETRESOURCEGROUPNAME/providers/Microsoft.Network/virtualNetworks/VNETNAME'
 ```powershell
 # Production slot
-az webapp vnet-integration add -g RESOURCEGROUPNAME -n APPSERVICE --vnet VNETINFO --subnet SUBNETNAME
+az webapp/functionapp vnet-integration add -g RESOURCEGROUPNAME -n APPSERVICE --vnet VNETINFO --subnet SUBNETNAME
 
 # Test slot (Optional)
-az webapp vnet-integration add -g RESOURCEGROUPNAME -n APPSERVICE --vnet VNETINFO --subnet SUBNETNAME -s test
+az webapp/functionapp vnet-integration add -g RESOURCEGROUPNAME -n APPSERVICE --vnet VNETINFO --subnet SUBNETNAME --slot staging
 
 # Dev slot (Optional)
-az webapp vnet-integration add -g RESOURCEGROUPNAME -n APPSERVICE --vnet VNETINFO --subnet SUBNETNAME -s dev
+az webapp/functionapp vnet-integration add -g RESOURCEGROUPNAME -n APPSERVICE --vnet VNETINFO --subnet SUBNETNAME --slot dev
 ```
 
 # Setup PE for Slots
@@ -141,7 +141,7 @@ az network private-endpoint create \
 --private-connection-resource-id /subscriptions/SUBSCRIPTIONUUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Web/sites/APPSERVICE \
 --group-id sites
 
-# Test slot (Optional)
+# staging slot (Optional)
 az network private-endpoint create \
 --name pe-APPSERVICE-staging \
 --resource-group VNETRESOURCEGROUPNAME \
