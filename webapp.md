@@ -106,8 +106,8 @@ az functionapp deployment slot create --name FUNCTIONAPP --resource-group RESOUR
 az webapp/functionapp identity assign --resource-group RESOURCEGROUPNAME --n APPSERVICE
 az ad group member add --group GROUPID --member-id PRINCIPALID
 
-# Test slot (Optional)
-az webapp/functionapp identity assign --resource-group RESOURCEGROUPNAME --n APPSERVICE -slot staging
+# Staging slot (Optional)
+az webapp/functionapp identity assign --resource-group RESOURCEGROUPNAME --n APPSERVICE --slot staging
 az ad group member add --group GROUPID --member-id PRINCIPALID
 
 # Dev slot (Optional)
