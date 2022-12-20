@@ -127,7 +127,7 @@ az ad group member add --group GROUPID --member-id PRINCIPALID
 # Production slot
 az webapp/functionapp vnet-integration add --resource-group RESOURCEGROUPNAME --name APPSERVICE --vnet VNETINFO --subnet SUBNETNAME
 
-# Test slot (Optional)
+# Staging slot (Optional)
 az webapp/functionapp vnet-integration add --resource-group RESOURCEGROUPNAME --name APPSERVICE --vnet VNETINFO --subnet SUBNETNAME --slot staging
 
 # Dev slot (Optional)
