@@ -64,6 +64,11 @@ az account set -s SUBSCRIPTIONUUID
 az appservice plan show -n SERVICEPLAN -g PLANRGGROUPNAME --query "id" --out tsv
 ```
 
+# Create Service Plan
+```powershell
+az appservice plan create --name SERVICEPLANNAME --resource-group RESOURCEGROUPNAME --is-linux --location westeurope --sku P1V3
+```
+
 # Create Web App
 ```powershell
 # Create Resource Group
