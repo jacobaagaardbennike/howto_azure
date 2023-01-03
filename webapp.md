@@ -76,9 +76,6 @@ az appservice plan create --name SERVICEPLANNAME --resource-group RESOURCEGROUPN
 
 # Create Web App
 ```powershell
-# Create Resource Group
-az group create --name RESOURCEGROUPNAME --location westeurope
-
 # Create App and Deployment Slots
 # Production
 az webapp create --name APPSERVICE --resource-group RESOURCEGROUPNAME --plan SERVICEPLAN --deployment-container-image-name APPSERVICE
@@ -92,9 +89,6 @@ az webapp deployment slot create --name APPSERVICE --resource-group RESOURCEGROU
 
 # Create Function App
 ```powershell
-# Create Resource Group
-az group create --name RESOURCEGROUPNAME --location westeurope
-
 # Create storage account
 az storage account create --name STORAGENAME --location westeurope --resource-group RESOURCEGROUPNAME --sku Standard_LRS
 
