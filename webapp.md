@@ -59,6 +59,11 @@ az login
 az account set -s SUBSCRIPTIONUUID
 ```
 
+# Create Resource Group:
+```powershell
+az group create --name RESOURCEGROUPNAME --location westeurope
+```
+
 # If the app service plan is not in the same RG, find it this way:
 ```powershell
 az appservice plan show -n SERVICEPLAN -g PLANRGGROUPNAME --query "id" --out tsv
